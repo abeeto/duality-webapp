@@ -55,7 +55,12 @@ const ChatBox = () => {
       ) : (
         <div className="no-room">
           <h2>Welcome to Duality</h2>
-          <p>Record your voice to train our models</p>
+          <p>Record your voice to train our models.<br/><br/>Read this sentence:
+
+
+ If this is true then those who tend to think creatively really are somehow different.
+          </p>
+          
           <MicUpload/>
         </div>
       )}
