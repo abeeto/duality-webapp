@@ -28,7 +28,7 @@ export async function cloneSpeaker(audioBlob, cloneSpeakerName, clonedSpeakerNam
     }
   
     const embeddings = await response.json();
-    clonedSpeakerNames.push(cloneSpeakerName);
+    console.log(embeddings)
   
     return [audioBlob, cloneSpeakerName, clonedSpeakerNames, embeddings];
   }
