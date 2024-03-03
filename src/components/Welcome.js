@@ -4,10 +4,14 @@ import { AuthButton } from "./AuthButton";
 const Welcome = () => {
   return (
     <main className="welcome">
-      <h2>Welcome to React Chat.</h2>
-      <img src="/logo512.png" alt="ReactJs logo" width={50} height={50} />
-      <p>To start, record your voice to train our models</p>
-      <AuthButton/>
+      <header role="banner" class="heropanel--video" loop = "">
+          <div class="heropanel__content">
+              <h2>Welcome To Duality</h2>
+              <p>Texting Redefined</p>
+          </div>
+          <p>To start, sign in with a Google account </p>
+          <AuthButton/>
+      </header>
     </main>
   );
 };
