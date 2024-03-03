@@ -166,3 +166,25 @@ input {
   background-color: #7cc5d9;
   font-weight: 600;
 }
+.chat-bubble-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.play-icon, .stop-icon{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.icon-button{
+  background-color: transparent;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
