@@ -6,18 +6,28 @@ const SendMessage = () => {
   const [message, setMessage] = useState("");
 
   const playAudio = (audioData) => {
-    const audio = new Audio(`data:audio/wav;base64,${audioData}`);
-    audio.play();
+    return new Promise(resolve => {
+      const audio = new Audio(`data:audio/wav;base64,${audioData}`);
+      audio.addEventListener('ended', () => resolve());
+      audio.play();
+    });
   };
-  const handleGenerateAndPlay = async (text_in,speakerName, embeddings) => {
+
+  const handleGenerateAndPlay = (text_in,speakerName, embeddings) => {
     const text = text_in; // Replace with the actual text
     const speakerType = 'Cloned'; // Replace with the actual speaker type
     const speakerNameStudio = 'Claribel Dervla'; // Replace with the actual studio speaker name
     const speakerNameCustom = speakerName; // Replace with the actual custom speaker name
     const lang = 'en'; // Replace with the actual language
-  
-    const audioData = await tts(text, speakerType, speakerNameStudio, speakerNameCustom, lang,embeddings);
-    playAudio(audioData)
+
+    return new Promise((resolve, reject) => {
+      tts(text, speakerType, speakerNameStudio, speakerNameCustom, lang,embeddings)
+        .then(async (audioData) => {
+          await playAudio(audioData)
+          resolve()
+        })
+        .catch(error => reject(error))
+    })
   };
 
   const sendMessage = async (e) => {
@@ -27,7 +37,7 @@ const SendMessage = () => {
       return;
     }
     const { uid, displayName, photoURL } = auth.currentUser;
-    handleGenerateAndPlay(message.trim(),uid)
+    await handleGenerateAndPlay(message.trim(),uid)
     await addDoc(collection(db, "messages"), {
       text: message,
       name: displayName,
