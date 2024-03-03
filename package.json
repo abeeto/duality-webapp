@@ -7,6 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.7",
+    "bower": "^1.8.14",
     "firebase": "^10.8.1",
     "firebase-react-hooks": "^0.8.0",
     "react": "^18.2.0",

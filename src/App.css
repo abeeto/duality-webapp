@@ -213,3 +213,62 @@ input {
   background-color: #7cc5d9;
   font-weight: 600;
 }
+
+
+.heropanel--video {
+  font-family:sans-serif;
+  min-height:500px;
+  position:relative;
+  overflow:hidden;
+  /* background:linear-gradient(#5ca9a9, #1c735d),url(https://images.unsplash.com/photo-1506748686214-e9df14d4d9d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80); */
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  color: #fff;
+}
+
+@keyframes gm-slidein {
+  from {
+      -webkit-transform:translate3d(0,-100%,0);
+      opacity:0;
+      transform:translate3d(0,-100%,0);
+  }
+
+  to {
+      -webkit-transform:none;
+      opacity:1;
+      transform:none;
+  }
+}
+
+.heropanel__content {
+  -moz-animation:gm-slidein 3s 1;
+  -ms-animation:gm-slidein 3s 1;
+  -o-animation:gm-slidein 3s 1;
+  -webkit-animation:gm-slidein 3s 1;
+  animation:gm-slidein 3s 1;
+  margin:40px auto;
+  max-width:50%;
+  padding:4em 0 2em;
+  text-align:center;
+
+}
+
+.heropanel__content h2 {
+  margin:0 0 .5em;
+  font-size:2.5em;
+  color: #64A1B7;
+  line-height:1.2;
+}
+
+.heropanel__content h1 a {
+  color:#FFF;
+  text-decoration:none;
+}
+
+.heropanel__content p {
+  color:#fff;
+  margin:0 0 1em;
+  font-size:1.25em;
+  line-height:1.6;
+}
