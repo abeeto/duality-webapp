@@ -4,7 +4,7 @@ import { useUser } from "./UserContextProvider"; // Ensure this import path is c
 import { useEffect, useRef, useState } from "react";
 import { db } from "../firebase";
 import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
-
+import MicUpload from "./MicUpload";
 
 
 const ChatBox = () => {
@@ -47,6 +47,7 @@ const ChatBox = () => {
         <div className="no-room">
           <h2>Welcome to Duality</h2>
           <p>Type a username to start chatting with them</p>
+          <MicUpload/>
           <div>
             <input 
               type="text" 
