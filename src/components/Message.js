@@ -1,13 +1,13 @@
 import React from "react";
 
-const Message = () => {
+const Message = ({message}) => {
   return (
     <div className={`chat-bubble`}>
       <img className="chat-bubble__left" src="" alt="user avatar" />
       <div className="chat-bubble__right">
         <p className="user-name">abeeto</p>
         <p className="user-message">
-          We are building a real time chat app with React and Firebase.
+          {message.text}
         </p>
       </div>
     </div>
