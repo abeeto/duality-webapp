@@ -4,7 +4,7 @@ const NavBar = () => {
 
   return (
     <nav className="nav-bar">
-      <h1>React Chat</h1>
+      <h1>Duality</h1>
       <AuthButton />
     </nav>
   );
