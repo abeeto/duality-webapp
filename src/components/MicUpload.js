@@ -39,7 +39,6 @@ function MicUpload() {
   };
 
   const handleGenerateAndPlay = async (speakerName, embeddings) => {
-    console.log(embeddings)
     const text = 'This is what your cloned voice sounds like'; // Replace with the actual text
     const speakerType = 'Cloned'; // Replace with the actual speaker type
     const speakerNameStudio = 'Claribel Dervla'; // Replace with the actual studio speaker name
