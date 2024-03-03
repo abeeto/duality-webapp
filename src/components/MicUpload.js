@@ -34,20 +34,38 @@ function MicUpload() {
 
   return (
     <div className='record-container'>
-      <ReactMic
-        record={isRecording}
-        className="sound-wave"
-        onStop={onStop}
-        onData={onData}
-        strokeColor="#fff"
-        backgroundColor="#1c2c4c" />
-      <div className='record-controls'>
-        <button className = 'button-default' onClick={startRecording} type="button">Start</button>
-        <button className = 'button-default' onClick={stopRecording} type="button">Stop</button>
-        <button className = 'button-default' onClick={uploadRecording} type="button">Upload</button>
+        { recordedBlob ? 
+          <>
+            <div className='record-preview'>
+              <audio src={recordedBlob.blobURL} controls />
+            </div>
+            <div className='record-controls'>
+              <button className = 'record-button-default' onClick={() => setRecordedBlob(null)} type="button">Record Again</button>
+              <button className = 'record-button-default' onClick={uploadRecording} type="button">Upload</button>
+            </div> 
+          </>
+        :
+        <>
+          <div className='record-preview'>
+            <ReactMic
+              record={isRecording}
+              className="recorder-preview"
+              onStop={onStop}
+              onData={onData}
+              strokeColor="#fff"
+              backgroundColor="#1c2c4c" />
+          </div>
+          <div className='record-controls'>
+            {
+              isRecording ? 
+              <button className = 'record-button-default' onClick={stopRecording} type="button">Stop</button>
+              : 
+              <button className = 'record-button-default' onClick={startRecording} type="button">Start</button>
+            }
+          </div> 
+        </>
+        }     
       </div> 
-      {recordedBlob && <audio src={recordedBlob.blobURL} controls />}
-    </div>
   );
 }
 

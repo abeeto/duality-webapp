@@ -23,6 +23,8 @@ input {
   color: #7cc5d9;
   display: flex;
   flex-direction: column;
+  height: 80vh;
+  margin: 10vh auto
 }
 
 /* every child of no-room has bottom margin */
@@ -70,17 +72,6 @@ input {
   font-weight: 600;
 }
 
-.button-default {
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: #1c2c4c;
-  border: 1px solid #88dded;
-  background-color: #88dded;
-  min-width: 30%;
-  font-weight: 600;
-}
-
-/* welcome page */
 .welcome {
   padding: 30px;
   text-align: center;
@@ -91,13 +82,15 @@ input {
   margin-bottom: 20px;
 }
 
-.sound-wave {
+.record-preview {
   width: 100%;
-  height: 100px;
+  height: 15vh;
   display: flex;
+  flex-direction: column;
+  gap: 20px;
   justify-content: center;
   align-items: center;
-  margin: 20px auto;  
+  margin: 40px auto;
 }
 
 .record-container {
@@ -105,7 +98,13 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 40%;
   margin: 20px auto;
+  padding: 20px;
+  background-color: #1c2c4c;
+  border-radius: 10px;
+  border:#88dded 1px solid;
+  box-shadow: -2px 2px 1px 1px #4c768d;
 }
 
 .record-controls {
@@ -113,8 +112,19 @@ input {
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  width: 100%;
+  margin:0 auto;
+  width: 80%;
   margin-bottom: 20px;
+}
+
+.record-button-default {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #1c2c4c;
+  border: 1px solid #88dded;
+  background-color: #88dded;
+  min-width: 35%;
+  font-weight: 600;
 }
 
 /* chat component */

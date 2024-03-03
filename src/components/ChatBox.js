@@ -55,18 +55,8 @@ const ChatBox = () => {
       ) : (
         <div className="no-room">
           <h2>Welcome to Duality</h2>
-          <p>Type a username to start chatting with them</p>
+          <p>Record your voice to train our models</p>
           <MicUpload/>
-          <div>
-            <input 
-              type="text" 
-              placeholder="Enter username to chat with" 
-              ref={roomInputRef} 
-            />
-            <button onClick={() => setRoom(roomInputRef.current.value)}>
-              Talk with user
-            </button>
-          </div>
         </div>
       )}
     </main>
