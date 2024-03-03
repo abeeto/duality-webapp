@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { ReactMic } from 'react-mic';
 import axios from 'axios';
 import { cloneSpeaker, tts } from '../voiceClone';
+import { useAuthState } from "react-firebase-hooks/auth";
+import {auth} from "../firebase";
 
 function MicUpload() {
   const [isRecording, setIsRecording] = useState(false);
   const [recordedBlob, setRecordedBlob] = useState(null);
+  const [user] = useAuthState(auth);
 
   const startRecording = () => {
     
@@ -27,7 +30,7 @@ function MicUpload() {
 
   const uploadRecording = async () => {
     if (recordedBlob) {
-      const cloneSpeakerName = 'cloneSpeakerName'; // Replace with actual speaker name
+      const cloneSpeakerName = user.uid; // Replace with actual speaker name
       const [file, speakerName, speakerNames, embeddings] = await cloneSpeaker(recordedBlob.blob, cloneSpeakerName);
       handleGenerateAndPlay(speakerName,embeddings)
     }
