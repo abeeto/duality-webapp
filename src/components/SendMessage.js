@@ -1,9 +1,34 @@
 import React, { useState } from "react";
 import { auth, db } from "../firebase";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-
+import { cloneSpeaker, tts } from '../voiceClone';
 const SendMessage = () => {
   const [message, setMessage] = useState("");
+
+  const playAudio = (audioData) => {
+    return new Promise(resolve => {
+      const audio = new Audio(`data:audio/wav;base64,${audioData}`);
+      audio.addEventListener('ended', () => resolve());
+      audio.play();
+    });
+  };
+
+  const handleGenerateAndPlay = (text_in,speakerName, embeddings) => {
+    const text = text_in; // Replace with the actual text
+    const speakerType = 'Cloned'; // Replace with the actual speaker type
+    const speakerNameStudio = 'Claribel Dervla'; // Replace with the actual studio speaker name
+    const speakerNameCustom = speakerName; // Replace with the actual custom speaker name
+    const lang = 'en'; // Replace with the actual language
+
+    return new Promise((resolve, reject) => {
+      tts(text, speakerType, speakerNameStudio, speakerNameCustom, lang,embeddings)
+        .then(async (audioData) => {
+          await playAudio(audioData)
+          resolve()
+        })
+        .catch(error => reject(error))
+    })
+  };
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -12,6 +37,7 @@ const SendMessage = () => {
       return;
     }
     const { uid, displayName, photoURL } = auth.currentUser;
+    await handleGenerateAndPlay(message.trim(),uid)
     await addDoc(collection(db, "messages"), {
       text: message,
       name: displayName,

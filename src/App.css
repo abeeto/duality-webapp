@@ -21,6 +21,10 @@ input {
   text-align: center;
   margin-top: 10vh;
   color: #7cc5d9;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  margin: 10vh auto
 }
 
 /* every child of no-room has bottom margin */
@@ -42,7 +46,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #4c768d;
+  background-color: #64a1b7;
   color: #242443;
   height: 60px;
   position: fixed;
@@ -68,7 +72,6 @@ input {
   font-weight: 600;
 }
 
-/* welcome page */
 .welcome {
   padding: 30px;
   text-align: center;
@@ -77,6 +80,50 @@ input {
 }
 .welcome :is(h2, p, img) {
   margin-bottom: 20px;
+}
+
+.record-preview {
+  width: 100%;
+  height: 15vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto;
+}
+
+.record-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 40%;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #64a1b7;
+  border-radius: 10px;
+  box-shadow: -2px 2px 1px 1px #4c768d;
+}
+
+.record-controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  margin:0 auto;
+  width: 80%;
+  margin-bottom: 20px;
+}
+
+.record-button-default {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #88dded;
+  border: 1px solid #1c2c4c;
+  background-color: #1c2c4c;
+  min-width: 35%;
+  font-weight: 600;
 }
 
 /* chat component */
@@ -187,4 +234,61 @@ input {
   cursor: pointer;
   width: 30px;
   height: 30px;
+}
+
+.heropanel--video {
+  font-family:sans-serif;
+  min-height:500px;
+  position:relative;
+  overflow:hidden;
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  color: #fff;
+}
+
+@keyframes gm-slidein {
+  from {
+      -webkit-transform:translate3d(0,-100%,0);
+      opacity:0;
+      transform:translate3d(0,-100%,0);
+  }
+
+  to {
+      -webkit-transform:none;
+      opacity:1;
+      transform:none;
+  }
+}
+
+.heropanel__content {
+  -moz-animation:gm-slidein 3s 1;
+  -ms-animation:gm-slidein 3s 1;
+  -o-animation:gm-slidein 3s 1;
+  -webkit-animation:gm-slidein 3s 1;
+  animation:gm-slidein 3s 1;
+  margin:40px auto;
+  max-width:50%;
+  padding:4em 0 2em;
+  text-align:center;
+
+}
+
+.heropanel__content h2 {
+  margin:0 0 .5em;
+  font-size:2.5em;
+  color: #64A1B7;
+  line-height:1.2;
+}
+
+.heropanel__content h1 a {
+  color:#FFF;
+  text-decoration:none;
+}
+
+.heropanel__content p {
+  color:#fff;
+  margin:0 0 1em;
+  font-size:1.25em;
+  line-height:1.6;
 }

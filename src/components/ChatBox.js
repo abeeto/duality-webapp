@@ -1,15 +1,15 @@
 import Message from "./Message";
 import SendMessage from "./SendMessage";
 import { useUser } from "./UserContextProvider"; // Ensure this import path is correct
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { db } from "../firebase";
 import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
-
+import MicUpload from "./MicUpload";
+import { AudioContext } from "./AudioContextProvider";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
-  const [room, setRoom] = useState("");
-  const roomInputRef = useRef(null);
+
   const user = useUser();
   const chatboxWindow = useRef(null);
 
@@ -40,11 +40,12 @@ const ChatBox = () => {
     }
   }, [messages]);
 
+  const {isAudioSubmitted} = useContext(AudioContext);
+
   return (
     <main className="chat-box">
-      {room && user ? (
+      {isAudioSubmitted && user ? (
         <div className="room">
-          <h2>Chatting with {room}</h2>
           <div className="chat-message-window" ref={chatboxWindow}>
             {messages?.map((message) => (
               <Message key={message.id} message={message} />
@@ -55,17 +56,13 @@ const ChatBox = () => {
       ) : (
         <div className="no-room">
           <h2>Welcome to Duality</h2>
-          <p>Type a username to start chatting with them</p>
-          <div>
-            <input 
-              type="text" 
-              placeholder="Enter username to chat with" 
-              ref={roomInputRef} 
-            />
-            <button onClick={() => setRoom(roomInputRef.current.value)}>
-              Talk with user
-            </button>
-          </div>
+          <p>Record your voice to train our models.<br/><br/>Read this sentence:
+
+
+ If this is true then those who tend to think creatively really are somehow different.
+          </p>
+          
+          <MicUpload/>
         </div>
       )}
     </main>
