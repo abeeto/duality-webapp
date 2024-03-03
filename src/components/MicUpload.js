@@ -49,11 +49,11 @@ function MicUpload() {
           <div className='record-preview'>
             <ReactMic
               record={isRecording}
-              className="recorder-preview"
               onStop={onStop}
               onData={onData}
               strokeColor="#fff"
-              backgroundColor="#64a1b7" />
+              backgroundColor="#64a1b7" 
+              />
           </div>
           <div className='record-controls'>
             {
