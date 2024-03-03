@@ -37,6 +37,10 @@ export async function cloneSpeaker(audioBlob, cloneSpeakerName, clonedSpeakerNam
 export async function tts(text, speakerType, speakerNameStudio, speakerNameCustom, lang, embeddings) {
     if(embeddings === undefined){
         embeddings = cloned_speakers[speakerNameCustom]
+        if(embeddings === undefined){
+            console.log('Embeddings not found')
+            return
+        }
         console.log(cloned_speakers)
     } else {
     cloned_speakers[speakerNameCustom] = embeddings;
