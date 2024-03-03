@@ -36,7 +36,7 @@ const ChatBox = () => {
   useEffect(() => {
     if (chatboxWindow.current) {
       const { current: chatBox } = chatboxWindow;
-      chatBox.scrollTop = chatBox.scrollHeight; // Corrected scroll functionality
+      chatBox.scrollTop = chatBox.scrollHeight;
     }
   }, [messages]);
 
