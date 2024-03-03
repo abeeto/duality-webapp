@@ -1,27 +1,28 @@
 import "./App.css";
-import React from "react";
 import NavBar from "./components/NavBar";
 import ChatBox from "./components/ChatBox";
 import Welcome from "./components/Welcome";
-import { auth } from "./firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
+// import { auth } from "./firebase";
+// import { useAuthState } from "react-firebase-hooks/auth";
+import { UserContextProvider, useUser } from "./components/UserContextProvider";
 
-export const userContext = React.createContext();
-function App() {
-  const [user] = useAuthState(auth);
+
+function AppContent() {
+  const { user } = useUser(); // Use the custom hook to access user
+
   return (
-    <userContext.Provider value={{ user }}>
-      <div className="App">
-        <NavBar />
-        {!user ? (
-          <Welcome />
-        ) : (
-          <>
-            <ChatBox />
-          </>
-        )}
-      </div>
-    </userContext.Provider>
+    <div className="App">
+      <NavBar />
+      { user ? <ChatBox />  : <Welcome/> }
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <UserContextProvider>
+      <AppContent />
+    </UserContextProvider>
   );
 }
 
