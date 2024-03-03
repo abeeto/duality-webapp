@@ -21,6 +21,8 @@ input {
   text-align: center;
   margin-top: 10vh;
   color: #7cc5d9;
+  display: flex;
+  flex-direction: column;
 }
 
 /* every child of no-room has bottom margin */
@@ -68,6 +70,16 @@ input {
   font-weight: 600;
 }
 
+.button-default {
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #1c2c4c;
+  border: 1px solid #88dded;
+  background-color: #88dded;
+  min-width: 30%;
+  font-weight: 600;
+}
+
 /* welcome page */
 .welcome {
   padding: 30px;
@@ -76,6 +88,32 @@ input {
   color: #7cc5d9;
 }
 .welcome :is(h2, p, img) {
+  margin-bottom: 20px;
+}
+
+.sound-wave {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;  
+}
+
+.record-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px auto;
+}
+
+.record-controls {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  width: 100%;
   margin-bottom: 20px;
 }
 

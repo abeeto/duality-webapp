@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ReactMic } from 'react-mic';
-import axios from 'axios';
 import { cloneSpeaker } from '../voiceClone';
 
 function MicUpload() {
@@ -34,17 +33,19 @@ function MicUpload() {
   };
 
   return (
-    <div>
+    <div className='record-container'>
       <ReactMic
         record={isRecording}
         className="sound-wave"
         onStop={onStop}
         onData={onData}
-        strokeColor="#000000"
-        backgroundColor="#FF4081" />
-      <button onClick={startRecording} type="button">Start</button>
-      <button onClick={stopRecording} type="button">Stop</button>
-      <button onClick={uploadRecording} type="button">Upload</button>
+        strokeColor="#fff"
+        backgroundColor="#1c2c4c" />
+      <div className='record-controls'>
+        <button className = 'button-default' onClick={startRecording} type="button">Start</button>
+        <button className = 'button-default' onClick={stopRecording} type="button">Stop</button>
+        <button className = 'button-default' onClick={uploadRecording} type="button">Upload</button>
+      </div> 
       {recordedBlob && <audio src={recordedBlob.blobURL} controls />}
     </div>
   );
