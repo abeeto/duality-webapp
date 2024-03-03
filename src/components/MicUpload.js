@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
 import { ReactMic } from 'react-mic';
-import axios from 'axios';
 import { cloneSpeaker, tts } from '../voiceClone';
-import { useAuthState } from "react-firebase-hooks/auth";
-import {auth} from "../firebase";
-
+import { AudioContext } from './AudioContextProvider';
+import { auth, db } from "../firebase";
 function MicUpload() {
   const [isRecording, setIsRecording] = useState(false);
   const [recordedBlob, setRecordedBlob] = useState(null);
-  const [user] = useAuthState(auth);
+
 
   const startRecording = () => {
     
@@ -27,12 +25,14 @@ function MicUpload() {
     console.log('recordedBlob is: ', recordedBlob);
     setRecordedBlob(recordedBlob);
   };
+  const {setAudioSubmitted} = React.useContext(AudioContext);
 
   const uploadRecording = async () => {
     if (recordedBlob) {
-      const cloneSpeakerName = user.uid; // Replace with actual speaker name
+      const cloneSpeakerName = auth.currentUser.uid; // Replace with actual speaker name
       const [file, speakerName, speakerNames, embeddings] = await cloneSpeaker(recordedBlob.blob, cloneSpeakerName);
       handleGenerateAndPlay(speakerName,embeddings)
+      setAudioSubmitted(true);
     }
   };
 
@@ -54,38 +54,38 @@ function MicUpload() {
 
   return (
     <div className='record-container'>
-        { recordedBlob ? 
-          <>
+            { recordedBlob ? 
+            <>
+                <div className='record-preview'>
+                <audio src={recordedBlob.blobURL} controls />
+                </div>
+                <div className='record-controls'>
+                <button className = 'record-button-default' onClick={() => setRecordedBlob(null)} type="button">Record Again</button>
+                <button className = 'record-button-default' onClick={uploadRecording} type="button">Upload</button>
+                </div> 
+            </>
+            :
+            <>
             <div className='record-preview'>
-              <audio src={recordedBlob.blobURL} controls />
+                <ReactMic
+                record={isRecording}
+                onStop={onStop}
+                onData={onData}
+                strokeColor="#fff"
+                backgroundColor="#64a1b7" 
+                />
             </div>
             <div className='record-controls'>
-              <button className = 'record-button-default' onClick={() => setRecordedBlob(null)} type="button">Record Again</button>
-              <button className = 'record-button-default' onClick={uploadRecording} type="button">Upload</button>
+                {
+                isRecording ? 
+                <button className = 'record-button-default' onClick={stopRecording} type="button">Stop</button>
+                : 
+                <button className = 'record-button-default' onClick={startRecording} type="button">Start</button>
+                }
             </div> 
-          </>
-        :
-        <>
-          <div className='record-preview'>
-            <ReactMic
-              record={isRecording}
-              onStop={onStop}
-              onData={onData}
-              strokeColor="#fff"
-              backgroundColor="#64a1b7" 
-              />
-          </div>
-          <div className='record-controls'>
-            {
-              isRecording ? 
-              <button className = 'record-button-default' onClick={stopRecording} type="button">Stop</button>
-              : 
-              <button className = 'record-button-default' onClick={startRecording} type="button">Start</button>
-            }
-          </div> 
-        </>
-        }     
-      </div> 
+            </>
+            }     
+        </div>    
   );
 }
 

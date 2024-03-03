@@ -5,6 +5,7 @@ import Welcome from "./components/Welcome";
 // import { auth } from "./firebase";
 // import { useAuthState } from "react-firebase-hooks/auth";
 import { UserContextProvider, useUser } from "./components/UserContextProvider";
+import {  AudioContextProvider } from "./components/AudioContextProvider";
 
 
 function AppContent() {
@@ -15,13 +16,15 @@ function AppContent() {
       <NavBar />
       { user ? <ChatBox />  : <Welcome/> }
     </div>
-  );
+  );    
 }
 
 function App() {
   return (
     <UserContextProvider>
-      <AppContent />
+      <AudioContextProvider>
+        <AppContent />
+      </AudioContextProvider>
     </UserContextProvider>
   );
 }

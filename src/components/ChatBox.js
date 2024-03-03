@@ -1,15 +1,15 @@
 import Message from "./Message";
 import SendMessage from "./SendMessage";
 import { useUser } from "./UserContextProvider"; // Ensure this import path is correct
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useContext } from "react";
 import { db } from "../firebase";
 import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
 import MicUpload from "./MicUpload";
+import { AudioContext } from "./AudioContextProvider";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
-  const [room, setRoom] = useState("");
-  const roomInputRef = useRef(null);
+
   const user = useUser();
   const chatboxWindow = useRef(null);
 
@@ -40,11 +40,12 @@ const ChatBox = () => {
     }
   }, [messages]);
 
+  const {isAudioSubmitted} = useContext(AudioContext);
+
   return (
     <main className="chat-box">
-      {room && user ? (
+      {isAudioSubmitted && user ? (
         <div className="room">
-          <h2>Chatting with {room}</h2>
           <div className="chat-message-window" ref={chatboxWindow}>
             {messages?.map((message) => (
               <Message key={message.id} message={message} />
