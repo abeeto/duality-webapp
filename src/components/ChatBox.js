@@ -18,9 +18,11 @@ const ChatBox = () => {
       <>
         <div className="no-room">
           <h2>Welcome to Chat</h2>
-          <p>Select a room to start chatting</p>
-          <input type="text" placeholder="Enter username to chat with" ref={roomInputRef}/>
-          <button onClick={() => setRoom(roomInputRef.current.value)}>Talk with user</button>
+          <p>Type a username to start chatting with them</p>
+          <div>
+            <input type="text" placeholder="Enter username to chat with" ref={roomInputRef}/>
+            <button onClick={() => setRoom(roomInputRef.current.value)}>Talk with user</button>
+          </div>
         </div>
       </>
       )}

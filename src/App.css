@@ -17,6 +17,16 @@ button,
 input {
   cursor: pointer;
 }
+.no-room {
+  text-align: center;
+  margin-top: 10vh;
+  color: #7cc5d9;
+}
+
+/* every child of no-room has bottom margin */
+.no-room > * {
+  margin-bottom: 1vh;
+}
 
 .App {
   width: 100%;
