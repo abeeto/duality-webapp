@@ -6,12 +6,12 @@ import { db } from "../firebase";
 import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
 
 
-
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
   const [room, setRoom] = useState("");
   const roomInputRef = useRef(null);
   const user = useUser();
+  const chatboxWindow = useRef(null);
 
   useEffect(() => {
     const q = query(
@@ -32,15 +32,24 @@ const ChatBox = () => {
     return () => unsubscribe;
   }, []);
 
-  //TO DO: redirect to welcome page if user is not logged in
+  // useEffect to scroll to the very bottom of the chat window when a new message is added
+  useEffect(() => {
+    if (chatboxWindow.current) {
+      const { current: chatBox } = chatboxWindow;
+      chatBox.scrollTop = chatBox.scrollHeight; // Corrected scroll functionality
+    }
+  }, [messages]);
+
   return (
     <main className="chat-box">
       {room && user ? (
         <div className="room">
           <h2>Chatting with {room}</h2>
-          {messages?.map((message) => (
-            <Message key={message.id} message={message} />
-          ))}
+          <div className="chat-message-window" ref={chatboxWindow}>
+            {messages?.map((message) => (
+              <Message key={message.id} message={message} />
+            ))}
+          </div>
           <SendMessage />
         </div>
       ) : (
