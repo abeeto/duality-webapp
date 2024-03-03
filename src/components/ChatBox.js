@@ -4,7 +4,7 @@ import { useUser } from "./UserContextProvider"; // Ensure this import path is c
 import { useEffect, useRef, useState } from "react";
 import { db } from "../firebase";
 import { collection, limit, onSnapshot, orderBy, query } from "firebase/firestore";
-
+import MicUpload from "./MicUpload";
 
 const ChatBox = () => {
   const [messages, setMessages] = useState([]);
@@ -55,17 +55,8 @@ const ChatBox = () => {
       ) : (
         <div className="no-room">
           <h2>Welcome to Duality</h2>
-          <p>Type a username to start chatting with them</p>
-          <div>
-            <input 
-              type="text" 
-              placeholder="Enter username to chat with" 
-              ref={roomInputRef} 
-            />
-            <button onClick={() => setRoom(roomInputRef.current.value)}>
-              Talk with user
-            </button>
-          </div>
+          <p>Record your voice to train our models</p>
+          <MicUpload/>
         </div>
       )}
     </main>
