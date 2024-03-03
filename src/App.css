@@ -46,7 +46,7 @@ input {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #76c2d1;
+  background-color: #64a1b7;
   color: #242443;
   height: 60px;
   position: fixed;
@@ -101,9 +101,8 @@ input {
   width: 40%;
   margin: 20px auto;
   padding: 20px;
-  background-color: #1c2c4c;
+  background-color: #64a1b7;
   border-radius: 10px;
-  border:#88dded 1px solid;
   box-shadow: -2px 2px 1px 1px #4c768d;
 }
 
@@ -120,9 +119,9 @@ input {
 .record-button-default {
   padding: 5px 10px;
   border-radius: 5px;
-  color: #1c2c4c;
-  border: 1px solid #88dded;
-  background-color: #88dded;
+  color: #88dded;
+  border: 1px solid #1c2c4c;
+  background-color: #1c2c4c;
   min-width: 35%;
   font-weight: 600;
 }

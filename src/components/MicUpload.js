@@ -53,7 +53,7 @@ function MicUpload() {
               onStop={onStop}
               onData={onData}
               strokeColor="#fff"
-              backgroundColor="#1c2c4c" />
+              backgroundColor="#64a1b7" />
           </div>
           <div className='record-controls'>
             {
