@@ -1,15 +1,19 @@
 import React from "react";
 import GoogleSignin from "../img/btn_google_signin_dark_pressed_web.png";
 import { auth } from "../firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { userContext } from "../App";
 
 
 export const AuthButton = () => {
-    const [user] = useAuthState(auth);
+    const { user } = React.useContext(userContext);
 
     const  googleSignIn = async () => {
-        await signInWithPopup(auth, new GoogleAuthProvider());
+        try{
+            await signInWithPopup(auth, new GoogleAuthProvider());
+        }catch (err){
+            console.error(err)
+        }
     }
 
     const signOut = () => {
