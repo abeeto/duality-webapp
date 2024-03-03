@@ -6,8 +6,6 @@ import Welcome from "./components/Welcome";
 import { auth } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
-//create context for user auth
-
 export const userContext = React.createContext();
 function App() {
   const [user] = useAuthState(auth);
