@@ -1,3 +1,8 @@
+# Backend Setup
+run `docker run --gpus=all -e COQUI_TOS_AGREED=1 --rm -p 8000:80 ghcr.io/coqui-ai/xtts-streaming-server:latest`
+
+API will be running locally under 127.0.0.1:8000
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
