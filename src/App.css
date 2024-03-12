@@ -213,14 +213,34 @@ input {
   background-color: #7cc5d9;
   font-weight: 600;
 }
+.chat-bubble-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
+.play-icon, .stop-icon{
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.icon-button{
+  background-color: transparent;
+  margin-right: 10px;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
 
 .heropanel--video {
   font-family:sans-serif;
   min-height:500px;
   position:relative;
   overflow:hidden;
-  /* background:linear-gradient(#5ca9a9, #1c735d),url(https://images.unsplash.com/photo-1506748686214-e9df14d4d9d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80); */
   background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
